@@ -1,7 +1,5 @@
 # Kale, a lisp-like language built on Python
 
----
-
 **Warning:** This is a toy project.
 
 ## Requirements
