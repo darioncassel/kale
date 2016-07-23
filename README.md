@@ -8,7 +8,7 @@ This project is an experiment in creating a programming language without knowing
 
 ### Interesting things about Kale
 
-- Uses post-fix notation: ```(1 2 +) # => 3 #```
+- Uses postfix notation: ```(1 2 +) # => 3 #```
 - Is only lisp-like because of the parenthesis; it doesn't actually use s-expressions.
 - Is interpreted to some kind of custom bytecode and then run on a very very simple VM (the kvm?).
 - Only supports integer input, but can output floats.
