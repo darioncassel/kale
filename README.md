@@ -2,7 +2,7 @@
 
 ## About
 
-This project is an experiment in creating a programming language without knowing any of the theory involved. I essentially wanted to see where tabula-rasa would take me before I took any PL classes. I'm probably going to look back in a few years at this and laugh.
+This project is an experiment in creating a programming language without knowing any of the theory involved. I essentially wanted to see where tabula rasa would take me before I took any PL classes. I'm probably going to look back at this in a few years and laugh.
 
 **Warning:** This is a toy project.
 
