@@ -1,0 +1,10 @@
+# This is a multiline comment!
+  This test program should evaluate
+  stuff. #
+
+(a var)
+(a 1 =)
+(b var)
+(b 2 =)
+(a val b val +)
+
