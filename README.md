@@ -40,6 +40,7 @@ This project is an experiment in creating a programming language without knowing
 
 - Variable assignment
 ```
+# Allocate a new variable, a #
 (a var)
 # Set a to 3 #
 (a 3 =)
