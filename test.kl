@@ -2,9 +2,8 @@
   This test program should evaluate
   stuff. #
 
-(a var)
-(a 1 =)
-(b var)
-(b 2 =)
-(a val b val +)
-
+(var a)
+(set a 3)
+(var b)
+(set b 4)
+(+ (val a) (val b))

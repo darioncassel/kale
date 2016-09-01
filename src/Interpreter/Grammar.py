@@ -1,6 +1,6 @@
 """
 class GrammarNode(object):
-    
+
     def __init__(self, typeString):
         self.typeString = typeString
         self.children = {}
@@ -18,13 +18,13 @@ class GrammarRules(object):
         "statementEndType :: None",
         "numType :: stackPush",
         "nameType :: stackPush",
-        "valType :: stackPop accessVar",
-        "addOpType :: stackPop stackPop addOp",
-        "subOpType :: stackPop stackPop subOp",
-        "multOpType :: stackPop stackPop multOp",
-        "divOpType :: stackPop stackPop divOp",
-        "varType:: stackPop allocateVar",
-        "assignType :: stackPop stackPop addrPush"
+        "valType :: stackPush accessVar",
+        "addOpType :: stackPush stackPush addOp",
+        "subOpType :: stackPush stackPush subOp",
+        "multOpType :: stackPush stackPush multOp",
+        "divOpType :: stackPush stackPush divOp",
+        "varType:: stackPush allocateVar",
+        "assignType :: stackPush stackPush addrPush"
     ]
 
     def __init__(self):
@@ -41,10 +41,10 @@ class GrammarRules(object):
                     newRule.append(op.strip())
             tokenRules[typeStr.strip()] = newRule
         return tokenRules
-    
+
     def getTokenRules(self):
         return self.tokenRules
-    
+
     """
     def parseRulesToTree(self):
         rootNode = GrammarNode(None)
@@ -64,7 +64,7 @@ class GrammarApply(object):
 
     def __init__(self):
         self.rules = GrammarRules().getTokenRules()
-    
+
     def applyToToken(self, token):
         tokenType = token.getType().__class__.__name__
         if tokenType in self.rules.keys():

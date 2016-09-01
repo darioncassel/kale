@@ -38,23 +38,35 @@ class Interpreter(object):
     stack-based Python equivalent.
     """
     def interpretNode(self, node):
-        statement = node.getTokens()
-        if statement:
-            for token in statement:
-                print("Token: " + str(token.type))
-                opList = self.grammarApply.applyToToken(token)
-                once = False
-                for opString in opList:
+        _head = 0
+        _tail = -1
+        operator = node.getToken()
+        print(operator)
+        print(node.children)
+        if operator:
+            opList = self.grammarApply.applyToToken(operator)
+            print(operator.type)
+            if len(opList) > 1:
+                _cIndex = 0
+                for opString in opList[:_tail]:
                     func = self.byteCode.getOperation(opString)
-                    if func and not self.machine.skip1:
-                        if self.machine.skip2:
-                            self.machine.skip1 = True
-                            self.machine.skip2 = False
-                        print("Called: " + opString)
-                        func(self.machine, token.literal)
-                        print(str(self.machine)+"\n")
-                    elif self.machine.skip1:
-                        self.machine.skip1 = False
+                    if func:
+                        token = node.getChildren()[_cIndex]
+                        self.interpretNode(token)
+                        _cIndex += 1
+                print("Called: " + opList[_tail])
+                func = self.byteCode.getOperation(opList[_tail])
+                func(self.machine, None)
+            else:
+                print("Called: " + opList[_tail])
+                func = self.byteCode.getOperation(opList[_head])
+                func(self.machine, operator.literal)
+                print(self.machine.stack)
+            print(self.machine)
+        else:
+            for child in node.children:
+                self.interpretNode(child)
+            
 
     """
     The _interpret method calls interpretNode on
@@ -63,8 +75,6 @@ class Interpreter(object):
     """
     def _interpret(self, node):
         self.interpretNode(node)
-        for childNode in node.getChildren():
-            self._interpret(childNode)
 
     """
     The interpret method is an entrypoint for the

@@ -13,10 +13,13 @@ class SyntaxNode(object):
     Its children and parent are initialized to an empty
     list and None, respectively.
     """
-    def __init__(self, tokens):
-        self.tokens = tokens
+    def __init__(self, token):
+        self.token = token
         self.children = []
         self.parent = None
+    
+    def setToken(self, token):
+        self.token = token
 
     """
     The addChild method allows us to append a node to the
@@ -29,8 +32,8 @@ class SyntaxNode(object):
     Here, we define getters and setters for some of the
     node's properties.
     """
-    def getTokens(self):
-        return self.tokens
+    def getToken(self):
+        return self.token
 
     def getChildren(self):
         return self.children
@@ -51,14 +54,13 @@ class SyntaxNode(object):
     def __repr__(self):
         output = ""
         output += "S["
-        if self.tokens:
-            for token in self.tokens:
-                output += str(token)
-        output += "]\n"
+        if self.token:
+            output += str(self.token)
+        output += "]:c={"
         if self.children:
             for child in self.children:
-                output += str(child)
-        return output
+                output += str(child) + ", "
+        return output + "}"
 
 """
 The SyntaxTree object is an overlay for the SyntaxNode
@@ -91,13 +93,16 @@ class SyntaxTree(object):
     currentNode.
     """
     def appendNode(self, node):
-        if self.currentNode:
+        """if self.currentNode:
             node.setParent(self.currentNode)
             self.currentNode.addChild(node)
         else:
             node.setParent(self.root)
             self.root.addChild(node)
         self.currentNode = node
+        """
+        node.setParent(self.root)
+        self.root.addChild(node)
 
     """
     Statements, which are just lists of tokens, are added

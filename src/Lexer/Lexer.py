@@ -59,8 +59,6 @@ class Lexer(object):
                     token.setType(multOpType())
                 elif token.getLiteral() == "/":
                     token.setType(divOpType())
-                elif token.getLiteral() == "=":
-                    token.setType(assignType())
                 elif token.getLiteral().isdigit():
                     token.setLiteral(int(token.getLiteral()))
                     token.setType(numType())
@@ -71,6 +69,8 @@ class Lexer(object):
                         token.setType(varType())
                     elif token.getLiteral() == "val":
                         token.setType(valType())
+                    elif token.getLiteral() == "set":
+                        token.setType(assignType())
                     else:
                         token.setType(nameType())
 

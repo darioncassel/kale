@@ -2,7 +2,7 @@
 The Parser needs to have access to the SyntaxTree to
 construct one.
 """
-from SyntaxTree.SyntaxTree import SyntaxTree
+from SyntaxTree.SyntaxTree import SyntaxTree, SyntaxNode
 
 """
 The Parser only cares about recognizing the beginning
@@ -54,22 +54,36 @@ class Parser(object):
     """
     def parse(self):
         inStatement = False
-        currentStatement = None
+        currentNode = None
+        tempNode = None
         balance = 0
         for token in self.tokens:
             KaleType = type(token.getType())
             if KaleType == statementBeginType:
                 balance += 1
+                if inStatement:
+                    tempNode = currentNode
                 inStatement = True
-                currentStatement = []
+                currentNode = SyntaxNode(None)
             elif KaleType == statementEndType:
+                inStatement = False
                 balance -= 1
-                if balance == 0:
-                    inStatement = False
-                self.tree.appendStatement(currentStatement)
-                currentStatement = []
+                if balance != 0:
+                    tempNode.addChild(currentNode)
+                elif balance == 0:
+                    if tempNode:
+                        self.tree.appendNode(tempNode)
+                    else:
+                        self.tree.appendNode(currentNode)
+                else:
+                    raise Exception("Parenthesis mismatch!")
             elif inStatement:
-                currentStatement.append(token)
+                if not currentNode.getToken():
+                    currentNode.setToken(token)
+                else:
+                    newNode = SyntaxNode(None)
+                    newNode.setToken(token)
+                    currentNode.addChild(newNode)
 
     """
     Here we define a getter for the SyntaxTree.

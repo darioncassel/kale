@@ -20,14 +20,18 @@ The result of the interpretation is returned.
 
 
 def main(filename):
+    print("----------Parser Debug-------------")
     tokenizer = Tokenizer(filename)
     tokenizer.tokenize()
     lexer = Lexer(tokenizer.getTokens())
     lexer.lex()
     parser = Parser(lexer.getTokens())
     parser.parse()
+    print(parser.getTree())
+    print("\n----------Execution Stack-----------")
     interpreter = Interpreter(parser.getTree())
     interpreter.interpret()
+    print("\n----------Program Output------------")
     return interpreter.output()
 
 """

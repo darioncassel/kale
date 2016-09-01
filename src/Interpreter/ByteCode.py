@@ -11,29 +11,15 @@ class ByteCode(object):
             machine.temp.append(x)
         return func
     
-    def checkIsVar():
+    def allocateVar():
         def func(machine, data):
-            var = machine.temp.pop()
-            if var in machine.vars.keys():
-                machine.stack.append(1)
-            else:
-                machine.stack.append(0)
-        return func
-    
-    def branch():
-        def func(machine, data):
-            x = machine.stack.pop()
-            if x == 0:
-                machine.skip1 = True
-            elif x == 1:
-                machine.skip2 = True
-            else:
-                raise Exception("Invalid call to branch!")
+            name = machine.stack.pop()
+            machine.vars[name] = None
         return func
     
     def accessVar():
         def func(machine, data):
-            var = machine.temp.pop()
+            var = machine.stack.pop()
             if var in machine.vars.keys():
                 value = machine.vars[var]
                 machine.stack.append(value)
@@ -43,8 +29,8 @@ class ByteCode(object):
     
     def addrPush():
         def func(machine, data):
-            var = machine.temp.pop()
-            val = machine.temp.pop()
+            val = machine.stack.pop()
+            var = machine.stack.pop()
             if var in machine.vars.keys():
                 machine.vars[var] = val
             else:
@@ -53,44 +39,34 @@ class ByteCode(object):
 
     def addOp():
         def func(machine, data):
-            x = machine.temp.pop()
-            y = machine.temp.pop()
+            y = machine.stack.pop()
+            x = machine.stack.pop()
             sum = x + y
             machine.stack.append(sum)
-            machine.temp = []
         return func
     
     def subOp():
         def func(machine, data):
-            x = machine.temp.pop()
-            y = machine.temp.pop()
+            y = machine.stack.pop()
+            x = machine.stack.pop()
             sum = x - y
             machine.stack.append(sum)
-            machine.temp = []
         return func
     
     def multOp():
         def func(machine, data):
-            x = machine.temp.pop()
-            y = machine.temp.pop()
+            y = machine.stack.pop()
+            x = machine.stack.pop()
             sum = x * y
             machine.stack.append(sum)
-            machine.temp = []
         return func
     
     def divOp():
         def func(machine, data):
-            x = machine.temp.pop()
-            y = machine.temp.pop()
+            y = machine.stack.pop()
+            x = machine.stack.pop()
             sum = x / float(y)
             machine.stack.append(sum)
-            machine.temp = []
-        return func
-    
-    def allocateVar():
-        def func(machine, data):
-            name = machine.temp.pop()
-            machine.vars[name] = None
         return func
     
     opToFuncMap = {
@@ -102,8 +78,6 @@ class ByteCode(object):
         "multOp": multOp,
         "divOp": divOp,
         "allocateVar": allocateVar,
-        "checkIsVar": checkIsVar,
-        "branch": branch,
         "accessVar": accessVar,
         "addrPush": addrPush
     }
