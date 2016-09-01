@@ -41,9 +41,8 @@ class Interpreter(object):
         _head = 0
         _tail = -1
         operator = node.getToken()
-        print(operator)
-        print(node.children)
         if operator:
+            print(node)
             opList = self.grammarApply.applyToToken(operator)
             print(operator.type)
             if len(opList) > 1:
@@ -51,7 +50,6 @@ class Interpreter(object):
                 for opString in opList[:_tail]:
                     func = self.byteCode.getOperation(opString)
                     if func:
-                        print(_cIndex)
                         childNode = node.getChildren()[_cIndex]
                         self.interpretNode(childNode)
                         _cIndex += 1

@@ -1,3 +1,4 @@
+from copy import deepcopy
 """
 The Parser needs to have access to the SyntaxTree to
 construct one.
@@ -70,6 +71,7 @@ class Parser(object):
                 elif KaleType == statementEndType:
                     balance -= 1
                     if balance != 0:
+                        tempNode = tempStack[-1]
                         tempNode.addChild(currentNode)
                         currentNode = tempStack.pop()
                     elif balance == 0:

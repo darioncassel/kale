@@ -3,7 +3,7 @@
   stuff. #
 
 (var a)
-(set a 5)
 (var b)
-(set b 4)
+(set a 1)
+(set b 2)
 (* (+ (val a) (val b)) 3)

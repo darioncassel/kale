@@ -62,6 +62,9 @@ class SyntaxNode(object):
                 output += "\n" + " "*level + self.printNode(child, level+2) + ", "
             output += "\n"
         return output + " "*int(level/2) + "}]"
+    
+    def __repr__(self):
+        return self.printNode(self, 2)
 
 """
 The SyntaxTree object is an overlay for the SyntaxNode
