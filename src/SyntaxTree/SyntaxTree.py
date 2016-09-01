@@ -51,16 +51,17 @@ class SyntaxNode(object):
     tokens are printed). It is usually enough to just
     print a root node to get representations of a tree.
     """
-    def __repr__(self):
+    def printNode(self, node, level):
         output = ""
-        output += "S["
-        if self.token:
-            output += str(self.token)
-        output += "]:c={"
-        if self.children:
-            for child in self.children:
-                output += str(child) + ", "
-        return output + "}"
+        output += "N[t={"
+        if node.token:
+            output += str(node.token)
+        output += "}, c={"
+        if node.children:
+            for child in node.children:
+                output += "\n" + " "*level + self.printNode(child, level+2) + ", "
+            output += "\n"
+        return output + " "*int(level/2) + "}]"
 
 """
 The SyntaxTree object is an overlay for the SyntaxNode
@@ -127,4 +128,4 @@ class SyntaxTree(object):
     root node.
     """
     def __repr__(self):
-        return str(self.root)
+        return self.root.printNode(self.root, 2)

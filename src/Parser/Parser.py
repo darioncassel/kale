@@ -55,35 +55,37 @@ class Parser(object):
     def parse(self):
         inStatement = False
         currentNode = None
-        tempNode = None
+        tempStack = []
         balance = 0
         for token in self.tokens:
             KaleType = type(token.getType())
-            if KaleType == statementBeginType:
-                balance += 1
-                if inStatement:
-                    tempNode = currentNode
-                inStatement = True
-                currentNode = SyntaxNode(None)
-            elif KaleType == statementEndType:
-                inStatement = False
-                balance -= 1
-                if balance != 0:
-                    tempNode.addChild(currentNode)
-                elif balance == 0:
-                    if tempNode:
-                        self.tree.appendNode(tempNode)
+            if token.type != None:
+                if KaleType == statementBeginType:
+                    balance += 1
+                    if inStatement:
+                        tempNode = currentNode
+                        tempStack.append(tempNode)
+                    inStatement = True
+                    currentNode = SyntaxNode(None)
+                elif KaleType == statementEndType:
+                    balance -= 1
+                    if balance != 0:
+                        tempNode.addChild(currentNode)
+                        currentNode = tempStack.pop()
+                    elif balance == 0:
+                        inStatement = False
+                        if tempStack:
+                            self.tree.appendNode(tempStack.pop())
+                        else:
+                            self.tree.appendNode(currentNode)
                     else:
-                        self.tree.appendNode(currentNode)
-                else:
-                    raise Exception("Parenthesis mismatch!")
-            elif inStatement:
-                if not currentNode.getToken():
-                    currentNode.setToken(token)
-                else:
-                    newNode = SyntaxNode(None)
-                    newNode.setToken(token)
-                    currentNode.addChild(newNode)
+                        raise Exception("Parenthesis mismatch!")
+                elif inStatement:
+                    if not currentNode.getToken():
+                        currentNode.setToken(token)
+                    else:
+                        newNode = SyntaxNode(token)
+                        currentNode.addChild(newNode)
 
     """
     Here we define a getter for the SyntaxTree.

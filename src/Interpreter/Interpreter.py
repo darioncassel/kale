@@ -51,8 +51,9 @@ class Interpreter(object):
                 for opString in opList[:_tail]:
                     func = self.byteCode.getOperation(opString)
                     if func:
-                        token = node.getChildren()[_cIndex]
-                        self.interpretNode(token)
+                        print(_cIndex)
+                        childNode = node.getChildren()[_cIndex]
+                        self.interpretNode(childNode)
                         _cIndex += 1
                 print("Called: " + opList[_tail])
                 func = self.byteCode.getOperation(opList[_tail])
