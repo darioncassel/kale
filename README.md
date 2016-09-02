@@ -26,13 +26,14 @@ This project is an experiment in creating a programming language without knowing
 ```
 # this is a multi
     line comment! #
-(+ 1 2) # => 3 #
+(say (+ 1 2)) 
+# => 3 #
 ```
 **Caveat:** Comments must have an end ```#```
 
 - Calculator-like behavior
 ```
-(/ (* (+ 1 2) 3) 2)
+(say (/ (* (+ 1 2) 3) 2))
 # => 4.5 #
 ```
 
@@ -41,7 +42,7 @@ This project is an experiment in creating a programming language without knowing
 # Allocate a new variable, a #
 (var a)
 # Print out what a contains #
-(val a)
+(say (val a))
 # => None #
 ```
 
@@ -52,7 +53,7 @@ This project is an experiment in creating a programming language without knowing
 # Set a to 3 #
 (set a 3)
 # Print out a #
-(val a)
+(say (val a))
 # => 3 #
 ```
 
@@ -62,7 +63,7 @@ This project is an experiment in creating a programming language without knowing
 (set a 1)
 (var b)
 (set b 2)
-(+ (val a) (val b))
+(say (+ (val a) (val b)))
 # => 3 #
 ```
 
