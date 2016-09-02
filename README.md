@@ -2,13 +2,13 @@
 
 ## About
 
-This project is an experiment in creating a programming language without knowing any of the theory involved. I essentially wanted to see where tabula rasa would take me before I took any PL classes. I'm probably going to look back at this in a few years and laugh.
-
-**Warning:** This is a toy project.
+This project is an experiment in creating a programming language without knowing any of the theory involved. I essentially wanted to see where tabula rasa would take me before I took any PL classes.
 
 ### Interesting things about Kale
 
-- Uses postfix notation: ```(1 2 +) # => 3 #```
+- ~~Uses postfix notation: ```(1 2 +) # => 3 #```~~
+    - Removed to facilitate easier disambiguation. Wasn't really a feature to begin with.
+- Is entirely stack-based.
 - Is only lisp-like because of the parenthesis; it doesn't actually use s-expressions.
 - Is interpreted to some kind of custom bytecode and then run on a very very simple VM (the kvm?).
 - Only supports integer input, but can output floats.
@@ -19,43 +19,43 @@ This project is an experiment in creating a programming language without knowing
 ```
 # this is a multi
     line comment! #
-(1 2 +) # => 3 #
+(+ 1 2) # => 3 #
 ```
 **Caveat:** Comments must have an end ```#```
 
 - Calculator-like behavior
 ```
-(((1 2 +) 3 * ) 2 /)
+(/ (* (+ 1 2) 3) 2)
 # => 4.5 #
 ```
 
 - Variable definition
 ```
 # Allocate a new variable, a #
-(a var)
+(var a)
 # Print out what a contains #
-(a val)
+(val a)
 # => None #
 ```
 
 - Variable assignment
 ```
 # Allocate a new variable, a #
-(a var)
+(var a)
 # Set a to 3 #
-(a 3 =)
+(set a 3)
 # Print out a #
-(a val)
+(val a)
 # => 3 #
 ```
 
 - Using variables in expressions
 ```
-(a var)
-(a 1 =)
-(b var)
-(b 2 =)
-(a val b val +)
+(var a)
+(set a 1)
+(var b)
+(set b 2)
+(+ (val a) (val b))
 # => 3 #
 ```
 

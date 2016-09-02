@@ -1,9 +1,27 @@
-# This is a multiline comment!
-  This test program should evaluate
-  stuff. #
+# this is a multi
+    line comment! #
+(+ 1 2) # => 3 #
+
+(/ (* (+ 1 2) 3) 2)
+# => 4.5 #
+
+# Allocate a new variable, a #
+(var a)
+# Print out what a contains #
+(val a)
+# => None #
+
+# Allocate a new variable, a #
+(var a)
+# Set a to 3 #
+(set a 3)
+# Print out a #
+(val a)
+# => 3 #
 
 (var a)
-(var b)
 (set a 1)
+(var b)
 (set b 2)
-(* (+ (val a) (val b)) 3)
+(+ (val a) (val b))
+# => 3 #
