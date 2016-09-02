@@ -1,4 +1,4 @@
-# Kale, a lisp-like language built on Python
+# Kale, a lisp-like language.
 
 ## About
 
