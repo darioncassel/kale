@@ -5,8 +5,6 @@ in order to run the program.
 from Interpreter.Grammar import GrammarApply
 from Interpreter.ByteCode import ByteCode
 from Interpreter.Machine import Machine
-from Types.Types import numType, addOpType, \
-    subOpType, multOpType, divOpType
 
 
 """
@@ -90,4 +88,4 @@ class Interpreter(object):
     contains as a single space-seperated string.
     """
     def output(self):
-        return " ".join([str(x) for x in self.machine.stack])
+        return " ".join([str(x) for x in self.machine.output])

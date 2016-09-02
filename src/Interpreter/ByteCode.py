@@ -36,6 +36,13 @@ class ByteCode(object):
             else:
                 raise Exception("Invalid var accessed!")
         return func
+    
+    def stdOut():
+        def func(machine, data):
+            val = machine.stack.pop()
+            machine.output.append(val)
+        return func
+
 
     def addOp():
         def func(machine, data):
@@ -79,7 +86,8 @@ class ByteCode(object):
         "divOp": divOp,
         "allocateVar": allocateVar,
         "accessVar": accessVar,
-        "addrPush": addrPush
+        "addrPush": addrPush,
+        "stdOut": stdOut
     }
     
     def getOperation(self, opString):

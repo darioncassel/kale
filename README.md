@@ -15,6 +15,13 @@ This project is an experiment in creating a programming language without knowing
 
 ### What it does so far
 
+- Simple output:
+```
+# Say hi! #
+(say hello!)
+# => hello! #
+```
+
 - Comments (multiline):
 ```
 # this is a multi

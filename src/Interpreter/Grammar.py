@@ -23,8 +23,9 @@ class GrammarRules(object):
         "subOpType :: stackPush stackPush subOp",
         "multOpType :: stackPush stackPush multOp",
         "divOpType :: stackPush stackPush divOp",
-        "varType:: stackPush allocateVar",
-        "assignType :: stackPush stackPush addrPush"
+        "varType :: stackPush allocateVar",
+        "assignType :: stackPush stackPush addrPush",
+        "outputType :: stackPush stdOut"
     ]
 
     def __init__(self):

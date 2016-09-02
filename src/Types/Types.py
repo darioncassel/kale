@@ -128,10 +128,8 @@ numeric types.
 
 
 class numType(TypeDef):
-
     def __init__(self):
         super().__init__("", int, None, False)
-
 
 class nameType(TypeDef):
      def __init__(self):
@@ -152,6 +150,11 @@ class valType(TypeDef):
 class assignType(TypeDef):
     def __init__(self):
         super().__init__("=", str, None, False)
+
+class outputType(TypeDef):
+    def __init__(self):
+        super().__init__("say", str, None, False)
+
 
 """
 The addOpType is a wrapper for the (Python) +

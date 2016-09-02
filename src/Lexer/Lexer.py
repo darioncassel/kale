@@ -11,7 +11,7 @@ help IDEs recoginize the imports).
 from Types.Types import commentType, numType, addOpType, \
     subOpType, multOpType, divOpType, statementBeginType, \
     statementEndType, nameType, defnType, assignType, \
-    valType, varType
+    valType, varType, outputType
 
 """
 The Lexer class takes a list of Tokens and assigns
@@ -71,6 +71,8 @@ class Lexer(object):
                         token.setType(valType())
                     elif token.getLiteral() == "set":
                         token.setType(assignType())
+                    elif token.getLiteral() == "say":
+                        token.setType(outputType())
                     else:
                         token.setType(nameType())
 
