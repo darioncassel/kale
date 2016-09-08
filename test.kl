@@ -29,3 +29,11 @@
 (set b 2)
 (say (+ (val a) (val b)))
 # => 3 #
+
+(set a 1)
+(set b 2)
+(say (> a b)) # => False #
+(say (>= a b)) # => False #
+(say (< a b)) # => True #
+(say (<= a b)) # => True #
+(say (== a b)) # => False #

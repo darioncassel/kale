@@ -57,8 +57,9 @@ class Interpreter(object):
             else:
                 print("Called: " + opList[_tail])
                 func = self.byteCode.getOperation(opList[_head])
-                func(self.machine, operator.literal)
-                print(self.machine.stack)
+                if func:
+                    func(self.machine, operator.literal)
+                    print(self.machine.stack)
             print(self.machine)
         else:
             for child in node.children:

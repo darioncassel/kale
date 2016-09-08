@@ -199,3 +199,47 @@ class divOpType(TypeDef):
 
     def __init__(self):
         super().__init__("/", None, int, False)
+
+
+class gCondOpType(TypeDef):
+
+    def __init__(self):
+        super().__init__("/", None, int, False)
+
+
+class gCondOpType(TypeDef):
+
+    def __init__(self):
+        super().__init__("/", None, int, False)
+
+
+class gCondOpType(TypeDef):
+
+    def __init__(self):
+        super().__init__(">", None, int, False)
+
+
+class geCondOpType(TypeDef):
+
+    def __init__(self):
+        super().__init__(">=", None, int, False)
+
+
+class lCondOpType(TypeDef):
+
+    def __init__(self):
+        super().__init__("<", None, int, False)
+
+    
+class leCondOpType(TypeDef):
+
+    def __init__(self):
+        super().__init__("<=", None, int, False)
+
+
+class eqCondOpType(TypeDef):
+
+    def __init__(self):
+        super().__init__("==", None, int, False)
+
+

@@ -76,6 +76,56 @@ class ByteCode(object):
             machine.stack.append(sum)
         return func
     
+    def cmpG():
+        def func(machine, data):
+            y = machine.stack.pop()
+            x = machine.stack.pop()
+            ret = "False"
+            if x > y:
+                ret = "True"
+            machine.stack.append(ret)
+        return func
+    
+    def cmpGe():
+        def func(machine, data):
+            y = machine.stack.pop()
+            x = machine.stack.pop()
+            ret = "False"
+            if x >= y:
+                ret = "True"
+            machine.stack.append(ret)
+        return func
+    
+    def cmpL():
+        def func(machine, data):
+            y = machine.stack.pop()
+            x = machine.stack.pop()
+            ret = "False"
+            if x < y:
+                ret = "True"
+            machine.stack.append(ret)
+        return func
+    
+    def cmpLe():
+        def func(machine, data):
+            y = machine.stack.pop()
+            x = machine.stack.pop()
+            ret = "False"
+            if x <= y:
+                ret = "True"
+            machine.stack.append(ret)
+        return func
+
+    def cmpEq():
+        def func(machine, data):
+            y = machine.stack.pop()
+            x = machine.stack.pop()
+            ret = "False"
+            if x == y:
+                ret = "True"
+            machine.stack.append(ret)
+        return func
+    
     opToFuncMap = {
         "None" : None,
         "stackPush": stackPush,
@@ -87,7 +137,12 @@ class ByteCode(object):
         "allocateVar": allocateVar,
         "accessVar": accessVar,
         "addrPush": addrPush,
-        "stdOut": stdOut
+        "stdOut": stdOut,
+        "cmpG": cmpG,
+        "cmpGe": cmpGe,
+        "cmpL": cmpL,
+        "cmpLe": cmpLe,
+        "cmpEq": cmpEq
     }
     
     def getOperation(self, opString):

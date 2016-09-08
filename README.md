@@ -67,6 +67,17 @@ This project is an experiment in creating a programming language without knowing
 # => 3 #
 ```
 
+- Conditonal Operators
+```
+(set a 1)
+(set b 2)
+(say (> a b)) # => False #
+(say (>= a b)) # => False #
+(say (< a b)) # => True #
+(say (<= a b)) # => True #
+(say (== a b)) # => False #
+```
+
 ### Requirements
 
 - Python 3
