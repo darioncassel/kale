@@ -8,6 +8,7 @@ class GrammarRules(object):
         "statementEndType :: None",
         "numType :: stackPush",
         "nameType :: stackPush",
+        "boolType :: stackPush",
         "valType :: stackPush accessVar",
         "addOpType :: stackPush stackPush addOp",
         "subOpType :: stackPush stackPush subOp",

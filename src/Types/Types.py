@@ -47,44 +47,6 @@ class TypeDef(Singleton):
     def __repr__(self):
         return self.__class__.__name__
 
-"""
-The Statement is the most complex Kale type. It currently represents
-a set of Tokens that semantically go together.
-
-FIXME: This should be removed.
-"""
-
-
-class Statement(TypeDef):
-
-    """
-    The Statement, unlike the other Kale types is currently
-    initialized with an id.
-
-    FIXME: remove.
-    """
-    def __init__(self, id):
-        self.type = Statement
-        self.id = id
-        self.tokens = []
-        super().__init__(None, None, None, True)
-
-    """
-    Because the Statement type needs to contain a list of
-    Tokens (which may be other Statements!) it needs a method
-    that provides abstracted access to its tokens.
-    """
-    def addToken(self, token):
-        self.tokens.append(token)
-
-    """
-    In order to represent this type, we overload the TypeDef
-    __repr__ method and instead print out the Statement's id
-    and the Tokens it contains.
-    """
-    def __repr__(self):
-        return "S[id=" + str(self.id) + \
-            ", tokens=" + str(self.tokens) + "]"
 
 """
 The statementBeginType, which will probably actually be kept
@@ -130,6 +92,10 @@ numeric types.
 class numType(TypeDef):
     def __init__(self):
         super().__init__("", int, None, False)
+
+class boolType(TypeDef):
+    def __init__(self):
+        super().__init__("", str, None, False)
 
 class nameType(TypeDef):
      def __init__(self):

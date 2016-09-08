@@ -12,7 +12,7 @@ from Types.Types import commentType, numType, addOpType, \
     subOpType, multOpType, divOpType, statementBeginType, \
     statementEndType, nameType, defnType, assignType, \
     valType, varType, outputType, gCondOpType, geCondOpType, \
-    lCondOpType, leCondOpType, eqCondOpType
+    lCondOpType, leCondOpType, eqCondOpType, boolType
 
 """
 The Lexer class takes a list of Tokens and assigns
@@ -70,6 +70,10 @@ class Lexer(object):
                     token.setType(leCondOpType())
                 elif token.getLiteral() == "==":
                     token.setType(eqCondOpType())
+                elif token.getLiteral() == "True":
+                    token.setType(boolType())
+                elif token.getLiteral() == "False":
+                    token.setType(boolType())
                 elif token.getLiteral().isdigit():
                     token.setLiteral(int(token.getLiteral()))
                     token.setType(numType())
